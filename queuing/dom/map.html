@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dementia Web</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<style>
+		#map-canvas {
+			height: 400px;
+			width:100%;
+			margin: -10px 0px;
+			padding: 0px
+		}
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!--google maps api script-->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script>
+	
+	<script>
+		var map;
+			function initialize() {
+				var mapOptions = {
+					zoom: 12,
+					center: new google.maps.LatLng(51.454514, -2.587910),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+				
+ // Define your locations: HTML content for the info window, latitude, longitude
+    var locations = [
+      [document.getElementById('service1'), 51.450542, -2.584856],
+      [document.getElementById('service2'), 51.453036, -2.599052],
+      [document.getElementById('service3'), 51.458249, -2.607507],
+      [document.getElementById('service4'), 51.450101, -2.577478],
+	  [document.getElementById('service5'), 51.440542, -2.584856],
+      [document.getElementById('service6'), 51.433036, -2.599052],
+      [document.getElementById('service7'), 51.468249, -2.607507],
+      [document.getElementById('service8'), 51.470101, -2.577478],
+      [document.getElementById('service9'), 51.450198, -2.569302]
+    ];
+    
+    // Setup the different icons and shadows
+    var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
+    
+    var icons = [
+      iconURLPrefix + 'blue-dot.png',
+      iconURLPrefix + 'purple-dot.png'
+    ]
+    var iconsLength = icons.length;
+
+
+    var infowindow = new google.maps.InfoWindow({
+      maxWidth: 160
+    });
+
+    var markers = new Array();
+    
+    var iconCounter = 0;
+    
+    // Add the markers and infowindows to the map
+    for (var i = 0; i < locations.length; i++) {  
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+        icon: icons[iconCounter]
+      });
+
+      markers.push(marker);
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+      
+      iconCounter++;
+      // We only have a limited number of possible icon colors, so we may have to restart the counter
+      if(iconCounter >= iconsLength) {
+      	iconCounter = 0;
+      }
+    }
+
+   
+   
+   var acOptions = {
+				types: ['establishment'],
+				types: ['geocode']
+			};
+			
+			var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);
+			autocomplete.bindTo('bounds',map);
+		var infoWindow = new google.maps.InfoWindow();
+		var marker = new google.maps.Marker({
+			map: map
+		});
+
+			google.maps.event.addListener(autocomplete, 'place_changed', function() {
+				infoWindow.close();
+			var place = autocomplete.getPlace();
+			if (place.geometry.viewport) {
+				map.fitBounds(place.geometry.viewport);
+				map.setZoom(13);
+			} 
+			else {
+				map.setCenter(place.geometry.location);
+				map.setZoom(12);
+			}
+//			marker.setPosition(place.geometry.location);
+//			infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
+//			infoWindow.open(map, marker);
+//			google.maps.event.addListener(marker,'click',function(e){
+//
+//			infoWindow.open(map, marker);
+//
+//			});
+			});
+
+			}
+			
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+	
+</head>
+
+<body>
+<!-- hidden div containing the information that is displayer on the map-->
+<div class="hide">
+	<div class="service" id="service1">
+		<p>Dementia Service1</p>
+		<a href="moreinfo.html">Click for more info 1</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service2">
+		<p>Dementia Service2</p>
+		<a href="moreinfo.html">Click for more info 2</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service3">
+		<p>Dementia Service3</p>
+		<a href="moreinfo.html">Click for more info 3</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service4">
+		<p>Dementia Service4</p>
+		<a href="moreinfo.html">Click for more info 4</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service5">
+		<p>Dementia Service5</p>
+		<a href="moreinfo.html">Click for more info 5</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service6">
+		<p>Dementia Service6</p>
+		<a href="moreinfo.html">Click for more info 6</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service7">
+		<p>Dementia Service7</p>
+		<a href="moreinfo.html">Click for more info 7</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service8">
+		<p>Dementia Service8</p>
+		<a href="moreinfo.html">Click for more info 8</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+	<div class="service" id="service9">
+		<p>Dementia Service9</p>
+		<a href="moreinfo.html">Click for more info 9</a>
+		<br>
+		<a href="tel:123456">Click to call</a>
+	</div>
+</div>
+<!-- navigation-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar" href="index.html"><img src="Images/Logo.png" alt="Dementia Web Logo" class="logo"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 
+      <ul class="nav navbar-nav navbar-right">
+	  
+        <li><a href="#alzheimers" data-toggle="modal">Alzheimer's Society</a></li>
+		
+		<li><a href="#contact" data-toggle="modal">Contact Us</a></li>
+		
+		
+		<li><a href="map.html">Search for Services</a></li>
+		
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catagories <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Helplines</a></li>
+					<li><a href="#">People with Dementia</a></li>
+					<li><a href="#">Family, Friends, and Carers</a></li>
+					<li><a href="#">Health</a></li>
+					<li><a href="#">Activities</a></li>
+					<li><a href="#">Home and Transport</a></li>
+					<li><a href="#">Finance and Legal</a></li>
+					<li><a href="#">Council</a></li>
+				</ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--map page main content -->
+<div class="container">
+
+	<div class="jumbotron">
+		
+			<h2>Search for services near you</h2>
+		
+		<input type="text" id="autocomplete" class="input-lg" placeholder="Enter Postcode">
+		
+		<select class="input-lg">
+			<option value="Select">Please Select Local Council</option>
+			<option value="Bristol">Bristol</option>
+			<option value="South Gloucestershire">South Gloucestershire</option>
+		</select>
+		
+	</div>
+	<p>Click on markers for more info</p>
+		
+		<div id="map-canvas"></div>	 
+		
+	</div>
+
+<!--Alzheimer's Society Contact Modal -->
+<div class="modal fade" id="alzheimers" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img class="aslogo" src="Images/AS-Logo.png" alt="Alzheimer's Society Logo">
+			</div>
+			<div class="modal-body">
+				<p>Alzheimer's Society is a membership organisation, which works to improve the quality of 
+				life of people affected by dementia in England, Wales and Northern Ireland.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="tel:03002221122">Call the Alzheimer's Society</a>
+				<a class="btn btn-primary" data-dismiss="modal">Close Window</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Dementia Web Contact Modal -->
+<div class="modal fade" id="contact" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img class="aslogo" src="Images/Logo.png" alt="Demetnia Web Logo Society Logo">
+			</div>
+			<div class="modal-body">
+				<p>Dementia Web is an organisation, which works to improve the quality of 
+				life of people affected by dementia in England, Wales and Northern Ireland.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="tel:03002221122">Call the Dementia Web Helpline</a>
+				<a class="btn btn-primary" data-dismiss="modal">Close Window</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Footer -->
+ <div class="navbar navbar-default">
+      <div class="container">
+		<a class="navbar-btn btn-info btn pull-left">Help</a>
+		<a class="navbar-btn btn-info btn pull-right">FAQ</a>
+      </div>
+</div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+  </body>
+  
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dementia Web</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	
+ <!--Script to change the background colour-->  
+	<script>
+        function changeBG(color){
+            document.body.bgColor=color;
+        }
+    </script>
+	
+<!--Script to change the font size-->  
+		
+	<script>
+		var min=14;
+		var max=30;
+			
+			function increaseFontSize() {
+				var p = document.querySelectorAll('p,li');
+				for(i=0;i<p.length;i++) {
+					if(p[i].style.fontSize) {
+						var s = parseInt(p[i].style.fontSize.replace("px",""));
+						} 
+						else {
+							var s = 14;
+						}
+						if(s!=max) {
+							s += 1;
+						}
+						p[i].style.fontSize = s+"px"
+				}
+			}
+
+			function decreaseFontSize() {
+				var p = document.querySelectorAll('p,li');
+				for(i=0;i<p.length;i++) {
+					if(p[i].style.fontSize) {
+						var s = parseInt(p[i].style.fontSize.replace("px",""));
+						} 
+						else {
+							var s = 14;
+						}
+						if(s!=min) {
+							s -= 1;
+						}
+						p[i].style.fontSize = s+"px"
+				}   
+			}
+    </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+<!--Start of Body-->
+ <body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar" href="index.html"><img src="Images/Logo.png" alt="Dementia Web Logo" class="logo"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 
+      <ul class="nav navbar-nav navbar-right">
+	  
+        <li><a href="#alzheimers" data-toggle="modal">Alzheimer's Society</a></li>
+		
+		<li><a href="#contact" data-toggle="modal">Contact Us</a></li>
+		
+		
+		<li><a href="map.html">Search for Services</a></li>
+		
+        <li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catagories <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Helplines</a></li>
+					<li><a href="#">People with Dementia</a></li>
+					<li><a href="#">Family, Friends, and Carers</a></li>
+					<li><a href="#">Health</a></li>
+					<li><a href="#">Activities</a></li>
+					<li><a href="#">Home and Transport</a></li>
+					<li><a href="#">Finance and Legal</a></li>
+					<li><a href="#">Council</a></li>
+				</ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--Change the background colour-->
+
+<ul class="nav navbar-nav navbar-right">
+	<li class="dropdown btn btn-default changecolour">
+			<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">Change Background Colour<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a class="changecolour blue btn btn-default pull-left" onclick="changeBG('#76CEDB')">blue</a></li>
+					<li><a class="changecolour yellow btn btn-default pull-left" onclick="changeBG('#F2FC7E')">Yellow</a></li>
+					<li><a class="changecolour green btn btn-default pull-left" onclick="changeBG('#deebce')">Green</a></li>
+					<li><a class="changecolour white btn btn-default" onclick="changeBG('#fff')">White</a></li>
+				</ul>
+    </li>
+</ul>
+<!--Increase and Decrease the text size-->	
+	<div class="changetext">
+			<a class="decrease btn btn-default pull-left" href="javascript:decreaseFontSize();">Text -</a> 
+			<a class="decrease btn btn-default pull-left" href="javascript:increaseFontSize();">Text +</a>
+    </div> 
+			
+<!--Header text and image -->
+<div class="container">
+ 
+	<div class="welcome">
+	
+			<img class="welcome" src="Images/Welcome.jpg" alt="Dementia Web Welcome Image">
+		
+	</div>
+	
+ <!--Main Articles -->	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h3><a href="#">Search For a Service</a></h3>
+				<p>Use our postcode search to find services available to you</p>
+				<a href="map.html" class="btn btn-default">Postcode Search</a>
+			</div>
+			
+			<div class="col-md-3">
+				<h3><a href="#">About Dementia Web</a></h3>
+				<p>An all-age dementia information resource. We aim to help people with dementia, 
+				their carers and health professionals find information about dementia and the support and care services 
+				available to them. For information on the range of dementia services available please see the Information 
+				Prescriptions for your local area.</p>
+				<a href="#" class="btn btn-default">More Information</a>
+			</div>
+			
+			<div class="col-md-3">
+				<h3><a href="#">Research Opportunities</a></h3>
+				<p>Alzheimer's Society is the leading care and research charity for people with dementia, 
+				their families and carers. Dementia affects over 800,000 people in the UK alone and numbers 
+				continue to grow.</p>
+				<a href="#" class="btn btn-default">Get in touch</a>
+			</div>
+			
+			<div class="col-md-3">
+				<h3><a href="#">Information Prescription</a></h3>
+				<p>PDF Copies of the information prescription</p>
+				<a href="#" class="btn btn-default">Download PDF's</a>
+			</div>
+
+			</div>
+		</div>
+	</div>
+
+<!--Alzheimer's Society Contact Modal -->
+<div class="modal fade" id="alzheimers" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img class="aslogo" src="Images/AS-Logo.png" alt="Alzheimer's Society Logo">
+			</div>
+			<div class="modal-body">
+				<p>Alzheimer's Society is a membership organisation, which works to improve the quality of 
+				life of people affected by dementia in England, Wales and Northern Ireland.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default" href="tel:03002221122">Call the Alzheimer's Society</a>
+				<a class="btn btn-primary" data-dismiss="modal">Close Window</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Dementia Web Contact Modal -->
+<div class="modal fade" id="contact" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img class="aslogo" src="Images/Logo.png" alt="Demetnia Web Logo Society Logo">
+			</div>
+			<div class="modal-body">
+				<p>Dementia Web is an organisation, which works to improve the quality of 
+				life of people affected by dementia in England, Wales and Northern Ireland.
+				</p>
+			</div>
+			
+			<!--contact form -->
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="contact-name" class="col-lg-2 controll-label">Name</label>
+					<div class="col-lg-10">
+					 <input type="text" class="form-control" id="contact-name" placeholder="Full Name"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="contact-email" class="col-lg-2 controll-label">Email</label>
+					<div class="col-lg-10">
+					 <input type="email" class="form-control" id="contact-email" placeholder="you@email.com"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="contact-message" class="col-lg-2 controll-label" >Message</label>
+					<div class="col-lg-10">
+					 <textarea class="form-control" rows="8" placeholder="Your Message"></textarea>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="submit">Submit</button>
+					<a class="btn btn-primary" data-dismiss="modal">Close Window</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Footer -->
+ <div class="navbar navbar-default">
+      <div class="container">
+		<a class="navbar-btn btn-info btn pull-left">Help</a>
+		<a class="navbar-btn btn-info btn pull-right">FAQ</a>
+      </div>
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+  </body>
+</html>
